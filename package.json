@@ -1,0 +1,28 @@
+{
+  "name": "17_express_postgres_sample",
+  "version": "1.0.0",
+  "description": "Sample RESTAPI with node and postgres",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thangakumard/17_express_postgres_sample.git"
+  },
+  "keywords": [
+    "node",
+    "postgres",
+    "express"
+  ],
+  "author": "thangakumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thangakumard/17_express_postgres_sample/issues"
+  },
+  "homepage": "https://github.com/thangakumard/17_express_postgres_sample#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.2.1"
+  }
+}
