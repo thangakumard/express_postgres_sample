@@ -1,13 +1,13 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: '',
-  host: 'localhost',
-  database: '',
-  password: '',
+  user: "postgres",
+  password: "postgres",
+  host:"localhost",
   port: 5432,
-})
+  database : "finance"
+});
 const getUsers = (request, response) => {
-  pool.query('SELECT * FROM users ORDER BY user_id ASC', (error, results) => {
+  pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
     if (error) {
       throw error
     }
@@ -18,7 +18,7 @@ const getUsers = (request, response) => {
 const getUserById = (request, response) => {
   const id = parseInt(request.params.user_id)
 
-  pool.query('SELECT * FROM users WHERE user_id = $1', [id], (error, results) => {
+  pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
     if (error) {
       throw error
     }
@@ -29,7 +29,7 @@ const getUserById = (request, response) => {
 const createUser = (request, response) => {
   const { name, email } = request.body
 
-  pool.query('INSERT INTO users (user_id, username,password,email,created_on,last_login) VALUES ($1, $2,$3,$4,$5,$6)', [name, email], (error, results) => {
+  pool.query('INSERT INTO users (id, email,password,user_info,created_date,modified_date) VALUES ($1, $2,$3,$4,$5,$6)', [name, email], (error, results) => {
     if (error) {
       throw error
     }
@@ -42,7 +42,7 @@ const updateUser = (request, response) => {
   const { name, email } = request.body
 
   pool.query(
-    'UPDATE users SET username = $1, password = $2 WHERE user_id = $3',
+    'UPDATE users SET email = $1, password = $2 WHERE id = $3',
     [name, email, id],
     (error, results) => {
       if (error) {
@@ -56,7 +56,7 @@ const updateUser = (request, response) => {
 const deleteUser = (request, response) => {
   const id = parseInt(request.params.user_id)
 
-  pool.query('DELETE FROM users WHERE user_id = $1', [id], (error, results) => {
+  pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
     if (error) {
       throw error
     }
